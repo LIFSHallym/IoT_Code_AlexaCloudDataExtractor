@@ -14,3 +14,8 @@
 
 #### N.B: 
 Anyone who wants to edit and contribute should create a branch and edit on the branch before merging to the master branch
+
+#### Cloud APIs and Android App traces
+[Amazon Alexa cloud APIs document] (https://docs.google.com/document/d/1PV5jnZHApp8rZK3D9P-sqdYXkvmUxRwqJlracz7k38A/edit)
+
+[Cloud APIs and android phone traces spreadsheet] (https://docs.google.com/spreadsheets/d/1XxRro8goJUB1vei5E4zx-n2CxN_bKl6ow4PBG4ekL94/edit)
