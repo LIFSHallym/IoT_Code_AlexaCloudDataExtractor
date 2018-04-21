@@ -14,27 +14,19 @@ from tkinter import ttk
 from tkinter import messagebox
 import threading
 import download_module
+from utils import Utils
 
 root = Tk()
 currdir = os.getcwd()
 
 """
 TODO:
-[-] Look for the api's from the website (scraping)
-[-] Look for all the api's inside the website? or use the card json that contains all the links and parse/construct the api
 [ ] Change to phantomJS for headless browser -- not that much necessary but better to do it not to see browser opening
-[-] Download all available files, including audios and JSON
-[-] Make the functionalities on separate functions, like: def write to file
-[-] Design and implement GUI
 [ ] Error handling
-[-] Change setting not to wait the browser until fully loaded - for performance improvement
-[-] browse saving file path
-[-] design the UI to select cloud (amazon, OnHub, Mother) and choose credential type (none,[username,password] or cookies)
-[-] OOP, make all the functionality on separate files([UI], [download using password and username], [download using cookies], [download and save]
-[ ] Convert to local time? saving based onlocal time is a good idea.
-[ ] Add an option to download the voice data? like check box
-[ ] Save based on their catagory such as general, activities, by creating a folder for each catagory
-[ ] Add another option like check box or button to download the calling and messaging data.
+[ ] Change to local time
+[ ] Include all the availbale APIs, only basic extraction is done until now
+[ ] Parsing and timeline analysis?
+[ ] Save to DataBase
 """
 
 def browse_path():
@@ -57,16 +49,10 @@ def enable_disable_login(enable):
         username_entry.config(state='disabled')
         password_entry.config(state='disabled')
 
-def showMessage(type, message):
-    if type == 'error':
-        messagebox.showerror(type, message)
-    else:
-        messagebox.showinfo(type, message)
-        
 def Initiate_download(location,credential):
     directory = save_path_entry.get()
     if directory == '':
-        showMessage('error', 'Path not correct ,please enter the path')
+        Utils.showMessage('Error', 'Path not correct ,please enter the path')
         return
     if location == 'Amazon':
         if credential == 'login':
@@ -78,9 +64,6 @@ def Initiate_download(location,credential):
 
             #instantiate the browser
             browser = webdriver.Firefox()
-
-            #PhantomJs - without browser oppening
-            #browser = webdriver.PhantomJS('C:\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe')
 
             #get the login page
             browser.get(url_login)
@@ -96,8 +79,8 @@ def Initiate_download(location,credential):
             password_pass = password_entry.get()
 
             #Enter username and password in their perspective fields
-            username.send_keys(username_name)#("simonhallym@gmail.com")
-            password.send_keys(password_pass)#("Protectyourdata!@#4")
+            username.send_keys(username_name)
+            password.send_keys(password_pass)
 
             #Simulate the click event by finding the sign in button, find by id
             browser.find_element_by_id("signInSubmit").click()
@@ -115,18 +98,17 @@ def Initiate_download(location,credential):
             browser.close()
 
             #download the files using the cookie that we got from the login browser
-            download_module.download_files(cookies,directory,CheckCalling.get(),CheckAudio.get())
-            showMessage('Information', 'The download finished successfully!')
+            download_module.download_files(cookies, directory, CheckCalling.get(), CheckAudio.get())
+            Utils.showMessage('Information', 'The download finished successfully!')
 
         elif credential == 'cookie':
             db_file = cookie_path_entry.get()
             if db_file == '':
-                showMessage('error', 'Path should not be empty, please provide cookie file')
+                Utils.showMessage('Error', 'Path should not be empty, please provide cookie file')
                 return
-            msg = download_module.main(db_file, directory, CheckCalling.get(), CheckAudio.get())
-            showMessage('Information', 'The download finished successfully!')
+            download_module.main(db_file, directory, CheckCalling.get(), CheckAudio.get())
         else:
-            showMessage('error', 'Incorrect parameter, Please select credential type.')
+            Utils.showMessage('Error', 'Incorrect parameter, Please select credential type.')
 
 #User Interface code
 root.title("Download files from Cloud")
