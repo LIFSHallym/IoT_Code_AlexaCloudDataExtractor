@@ -18,8 +18,6 @@ class get_file_Save:
   def get_saveUsingApi(self, api, fileName):
     download_path = os.path.join(self.path + '/', fileName)
     get_content = requests.get(api, cookies=self.cookie)
-    # with open(download_path,"wb") as json_file:
-    #     json_file.write(get_content.content)
     Utils.save_to_file(download_path,get_content.json())
 
   def Download_callingAndMessaging(self, api, fileName, indicator):
@@ -83,9 +81,6 @@ class get_file_Save:
           if len(data['activities']) == 0:
               break
           else:
-              #save the activity that contains 50 individual activity
-            #   with open(download_path + ".json", "wb") as json_file:
-            #       json_file.write(activities.content)
               Utils.save_to_file(download_path + ".json", activities.json())
               #Iterate through the the activites to get all the individual activities including the voice command
               #Mind that with one url/api, we only get 50 individual avtivities history, it includes 50 voice part of the file

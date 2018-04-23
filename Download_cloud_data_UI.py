@@ -49,11 +49,12 @@ def enable_disable_login(enable):
         username_entry.config(state='disabled')
         password_entry.config(state='disabled')
 
-def Initiate_download(location,credential):
+def Initiate_download(location, credential):
     directory = save_path_entry.get()
     if directory == '':
         Utils.showMessage('Error', 'Path not correct ,please enter the path')
         return
+    # download from Amazon, OnHub, or Mother sense
     if location == 'Amazon':
         if credential == 'login':
             #login api
@@ -143,8 +144,8 @@ ttk.Label(frame2, text="Download from:").grid(column=0, padx=3,row=1, sticky=W)
 
 #radio buttons
 Radiobutton(frame2, text="Amazon", variable=cloud_rVal, value='Amazon').grid(column=1, row=1, padx=3, sticky=W)
-Radiobutton(frame2, text="OnHub", variable=cloud_rVal, value='OnHub').grid(column=2, row=1, padx=3, sticky=W)
-Radiobutton(frame2, text="Mother", variable=cloud_rVal, value='Mother').grid(column=3, row=1, padx=3, sticky=W)
+Radiobutton(frame2, text="IoT Device-2", variable=cloud_rVal, value='IoT2', state='disabled').grid(column=2, row=1, padx=3, sticky=W)
+Radiobutton(frame2, text="IoT device-3", variable=cloud_rVal, value='IoT3',state='disabled').grid(column=3, row=1, padx=3, sticky=W)
 
 mainframe = ttk.Frame(root, padding="3 3 12 12")
 mainframe.grid(column=0, row=1, sticky=(N, W, E, S))
@@ -152,7 +153,7 @@ mainframe.columnconfigure(0, weight=1)
 mainframe.rowconfigure(0, weight=1)
 
 #textboxes
-username_entry = ttk.Entry(mainframe, width=30, textvariable=username,state='disabled')
+username_entry = ttk.Entry(mainframe, width=30, textvariable=username, state='disabled')
 username_entry.grid(column=1, row=4, columnspan=2, sticky=(W, E))
 password_entry = ttk.Entry(mainframe, width=30, textvariable=password, show ='*',state='disabled')
 password_entry.grid(column=1, row=5, columnspan=2, sticky=(W, E))
@@ -160,7 +161,7 @@ cookie_path_entry = ttk.Entry(mainframe, width=30, textvariable=cookie_path, sta
 cookie_path_entry.grid(column=1, row=2, padx=3, columnspan=2, sticky=(W, E))
 
 #Buttons
-ttk.Button(mainframe, text="Download", command=lambda:Initiate_download(cloud_rVal.get(),cred.get())).grid(column=3, row=4,rowspan=2, sticky=(E, W, N, S))
+ttk.Button(mainframe, text="Download", command=lambda:Initiate_download(cloud_rVal.get(), cred.get())).grid(column=3, row=4,rowspan=2, sticky=(E, W, N, S))
 ttk.Button(mainframe, text="Browse", command=browse_file).grid(column=3, row=2, sticky=(E, W))
 
 #Radio buttons
