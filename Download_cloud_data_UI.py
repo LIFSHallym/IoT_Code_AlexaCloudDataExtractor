@@ -86,8 +86,6 @@ def Initiate_download(location, credential):
             #Simulate the click event by finding the sign in button, find by id
             browser.find_element_by_id("signInSubmit").click()
 
-            print("logged-in!!")
-
             # get the cookies from the current session
             all_cookies = browser.get_cookies()
 
