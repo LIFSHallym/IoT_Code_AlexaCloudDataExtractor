@@ -7,12 +7,6 @@ import time
 from Save_module import get_file_Save
 from utils import Utils
 
-"""
-TODO:
-[-] download all availbale files
-[ ] Iterate through all activity items, download all the available, not only 50
-[ ] Extract Audio url and download???
-"""
 
 def create_connection(db_file):
     """ create a database connection to the SQLite database

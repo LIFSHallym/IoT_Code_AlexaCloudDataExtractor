@@ -18,8 +18,6 @@ class Utils:
             data (bytes): The data to be saved
         """
         try:
-            # with open(path + '.json',"wb") as json_file:
-            #     json_file.write(data)
             with open(path + '.json', 'w') as outfile:  
                 json.dump(data, outfile)
         except:
@@ -41,14 +39,11 @@ class Utils:
             return ""
 
     @staticmethod
-    def showMessage(type, message):          
-        #import tkinter as tk
+    def showMessage(type, message):   
         from tkinter import messagebox
-        #root = tk.Tk()
         if type == 'error':
             messagebox.showerror(type, message)
         else:
             messagebox.showinfo(type, message)
-        #exit()
 
 

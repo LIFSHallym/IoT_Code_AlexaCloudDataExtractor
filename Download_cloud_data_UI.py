@@ -23,8 +23,6 @@ currdir = os.getcwd()
 TODO:
 [ ] Change to phantomJS for headless browser -- not that much necessary but better to do it not to see browser opening
 [ ] Error handling
-[ ] Change to local time
-[ ] Include all the availbale APIs, only basic extraction is done until now
 [ ] Parsing and timeline analysis?
 [ ] Save to DataBase
 """
@@ -172,7 +170,6 @@ ttk.Separator(mainframe,orient=HORIZONTAL).grid(row=3, columnspan=5, sticky=(E,W
 #labels
 ttk.Label(mainframe,text='Credential:').grid(column=0,row=1,sticky=W)
 ttk.Label(mainframe,text='Cookie file:').grid(column=0,row=2,sticky=W)
-#ttk.Label(mainframe, text='Include').grid(column=1, row=6, sticky=(W,E))
 ttk.Label(mainframe, text="Username:").grid(column=0, row=4, sticky=W)
 ttk.Label(mainframe, text="Password:").grid(column=0, row=5, sticky=W)
 ttk.Label(mainframe, text="Include:").grid(column=0, row=6, sticky=W)
@@ -182,10 +179,6 @@ C1 = Checkbutton(mainframe, text = "Calling and Messaging data", variable = Chec
 C1.grid(column=1, row=6,columnspan=2, sticky=(W,E))
 C2 = Checkbutton(mainframe, text = "Voice data", variable = CheckAudio, onvalue = 1, offvalue = 0)
 C2.grid(column=3,row=6,sticky=(E,W))
-
-#progress bar
-#pr = ttk.Progressbar(mainframe, orient='horizontal', mode='indeterminate')
-#pr.grid(column=3,row=6,sticky=(E,W))
 
 for child in mainframe.winfo_children(): 
     child.grid_configure(padx=5, pady=5)
