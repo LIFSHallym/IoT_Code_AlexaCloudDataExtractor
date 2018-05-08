@@ -16,6 +16,3 @@
 
 #### N.B:
 * The code does not support data extraction from the phone Image, only extract data from Alexa cloud (needs valid user account or a cookie)
-
-#### Cloud APIs and Android App traces
-Cloud APIs and android phone traces spreadsheet - https://drive.google.com/open?id=1XxRro8goJUB1vei5E4zx-n2CxN_bKl6ow4PBG4ekL94
